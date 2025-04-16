@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { AdjustableImage } from "./components/AdjustableImage"
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(0)
@@ -43,12 +44,12 @@ export default function Home() {
   }, [currentPage])
 
   return (
-    <main className="min-h-screen bg-amber-50 flex flex-col items-center justify-center py-8 px-4">
+    <main className="h-screen bg-amber-50 flex flex-col items-center justify-center p-4">
       {/* Book Cover (shown when on page 0) */}
       {currentPage === 0 ? (
         <div
           className={cn(
-            "w-full max-w-4xl aspect-[3/4] bg-amber-800 rounded-lg shadow-[0_20px_25px_-5px_rgba(0,0,0,0.3),0_10px_10px_-5px_rgba(0,0,0,0.2),15px_15px_0_0_#92400e,-15px_15px_0_0_#92400e]",
+            "w-full max-w-3xl h-[85vh] bg-amber-800 rounded-lg shadow-[0_20px_25px_-5px_rgba(0,0,0,0.3),0_10px_10px_-5px_rgba(0,0,0,0.2),15px_15px_0_0_#92400e,-15px_15px_0_0_#92400e]",
             "flex flex-col items-center justify-center text-center p-8 relative overflow-hidden",
             "border-r-[25px] border-r-amber-900 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[25px] before:bg-amber-900",
             isFlipping ? "animate-book-close" : "",
@@ -57,9 +58,9 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=600')] opacity-20 bg-cover bg-center"></div>
           <div className="relative z-10 flex flex-col items-center">
             <div className="w-40 h-40 rounded-full overflow-hidden mb-8 border-4 border-amber-200 shadow-lg">
-              <Image
-                src="/placeholder.svg?height=400&width=400"
-                alt="Your dog"
+              <AdjustableImage
+                src="/images/IMG_9313.JPG"
+                alt="Your beloved dog"
                 width={160}
                 height={160}
                 className="object-cover"
@@ -67,7 +68,7 @@ export default function Home() {
               />
             </div>
             <h1 className="text-5xl md:text-6xl font-serif font-bold text-amber-100 mb-6">In Loving Memory</h1>
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-amber-200 mb-4">[Your Dog's Name]</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-amber-200 mb-4">A Beautiful Soul</h2>
             <p className="text-amber-300 mb-8 text-xl">A Treasured Life</p>
             <p className="max-w-lg text-amber-200 mb-12 italic text-lg">
               "The memories we keep in our hearts are the treasures that time cannot steal."
@@ -151,16 +152,16 @@ function renderLeftPage(pageNum: number) {
           <h2 className="text-3xl font-serif text-amber-800 mb-6 text-center">About</h2>
           <div className="flex-1 flex flex-col justify-center items-center">
             <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-amber-200 shadow-md mx-auto">
-              <Image
-                src="/placeholder.svg?height=400&width=400"
-                alt="Your dog"
+              <AdjustableImage
+                src="/images/IMG_8895.JPG"
+                alt="A happy moment"
                 width={192}
                 height={192}
                 className="object-cover"
               />
             </div>
-            <h3 className="text-xl font-serif text-amber-700 mb-2 text-center">[Your Dog's Name]</h3>
-            <p className="text-amber-600 text-center mb-4">[Birth Year] - [Year of Passing]</p>
+            <h3 className="text-xl font-serif text-amber-700 mb-2 text-center">Forever in Our Hearts</h3>
+            <p className="text-amber-600 text-center mb-4">A Lifetime of Love and Joy</p>
             <div className="w-16 h-1 bg-amber-300 mb-4"></div>
             <p className="text-amber-800 text-center italic">
               "A loyal companion, a faithful friend, and a beloved family member."
@@ -206,7 +207,7 @@ function renderLeftPage(pageNum: number) {
                 key={i}
                 className="relative aspect-square rounded-md overflow-hidden shadow-md border-2 border-amber-200"
               >
-                <Image
+                <AdjustableImage
                   src={`/placeholder.svg?height=200&width=200&text=Photo ${i + 1}`}
                   alt={`Memory ${i + 1}`}
                   fill
@@ -231,7 +232,7 @@ function renderLeftPage(pageNum: number) {
             </p>
             <div className="flex justify-center mt-6">
               <div className="w-24 h-24 relative">
-                <Image
+                <AdjustableImage
                   src="/placeholder.svg?height=100&width=100&text=Paw"
                   alt="Paw print"
                   width={96}
@@ -252,21 +253,38 @@ function renderRightPage(pageNum: number) {
   switch (pageNum) {
     case 1:
       return (
-        <div className="h-full">
-          <h2 className="text-3xl font-serif text-amber-800 mb-6 text-center">Your Story</h2>
-          <div className="prose prose-amber">
-            <p className="text-amber-800 mb-4">
-              [Your dog's name] came into our lives on [date] and immediately stole our hearts. With [his/her] playful
-              spirit and gentle soul, [he/she] became more than just a pet – [he/she] was family.
-            </p>
-            <p className="text-amber-800 mb-4">
-              [He/She] loved [favorite activities], and nothing made [him/her] happier than [favorite
-              toy/treat/activity]. Every day with [him/her] was filled with joy and unconditional love.
-            </p>
-            <p className="text-amber-800">
-              Though our time together was too short, the memories we created will last a lifetime. This book is
-              dedicated to those precious moments and the incredible bond we shared.
-            </p>
+        <div className="h-full grid grid-cols-2 gap-4">
+          <div className="relative h-64 rounded-lg overflow-hidden shadow-md">
+            <AdjustableImage
+              src="/images/IMG_3636.JPG"
+              alt="Relaxing on the couch"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative h-64 rounded-lg overflow-hidden shadow-md">
+            <AdjustableImage
+              src="/images/IMG_5010.HEIC"
+              alt="Playing in the snow"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative h-64 rounded-lg overflow-hidden shadow-md">
+            <AdjustableImage
+              src="/images/IMG_8006.JPG"
+              alt="Family moments"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative h-64 rounded-lg overflow-hidden shadow-md">
+            <AdjustableImage
+              src="/images/IMG_9265.JPG"
+              alt="Happy smile"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       )
@@ -274,59 +292,47 @@ function renderRightPage(pageNum: number) {
       return (
         <div className="h-full">
           <h2 className="text-3xl font-serif text-amber-800 mb-6 text-center">Special Moments</h2>
-          <div className="relative h-[calc(100%-4rem)] rounded-lg overflow-hidden border-4 border-amber-200 shadow-md transform rotate-1">
-            <Image
-              src="/placeholder.svg?height=500&width=400&text=Special Moment"
-              alt="Special moment"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="absolute bottom-12 right-12 transform -rotate-6">
-            <div className="bg-white p-2 shadow-md border border-amber-200 w-32 text-center">
-              <p className="text-amber-800 text-sm">[Special date]</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="relative h-48 rounded-lg overflow-hidden shadow-md">
+              <AdjustableImage
+                src="/images/IMG_8931.JPG"
+                alt="On a walk"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative h-48 rounded-lg overflow-hidden shadow-md">
+              <AdjustableImage
+                src="/images/IMG_8754.JPG"
+                alt="By the lake"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
+          <p className="text-amber-800 text-center mt-6 italic">
+            "Every walk was an adventure, every moment a treasure."
+          </p>
         </div>
       )
     case 3:
       return (
         <div className="h-full">
-          <h2 className="text-3xl font-serif text-amber-800 mb-6 text-center">More Photos</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className="relative aspect-square rounded-md overflow-hidden shadow-md border-2 border-amber-200"
-              >
-                <Image
-                  src={`/placeholder.svg?height=200&width=200&text=Photo ${i + 5}`}
-                  alt={`Memory ${i + 5}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            ))}
+          <h2 className="text-3xl font-serif text-amber-800 mb-6 text-center">Cherished Times</h2>
+          <div className="relative h-96 rounded-lg overflow-hidden shadow-md mb-6">
+            <AdjustableImage
+              src="/images/IMG_8668.JPG"
+              alt="Autumn adventures"
+              fill
+              className="object-cover"
+            />
           </div>
-        </div>
-      )
-    case 4:
-      return (
-        <div className="h-full flex flex-col">
-          <h2 className="text-3xl font-serif text-amber-800 mb-6 text-center">With Love</h2>
-          <div className="flex-1 flex flex-col justify-center items-center">
-            <blockquote className="text-xl text-amber-800 italic text-center mb-6">
-              "Until one has loved an animal, a part of one's soul remains unawakened."
-            </blockquote>
-            <cite className="text-amber-600 block mb-8">— Anatole France</cite>
-            <div className="w-16 h-1 bg-amber-300 mb-8"></div>
-            <p className="text-amber-800 text-center">Created with love in memory of</p>
-            <h3 className="text-2xl font-serif text-amber-700 mt-2">[Your Dog's Name]</h3>
-            <p className="text-amber-600 mt-1">[Birth Year] - [Year of Passing]</p>
-          </div>
+          <p className="text-amber-800 text-center italic">
+            "Your love made every season beautiful."
+          </p>
         </div>
       )
     default:
-      return <div></div>
+      return null
   }
 }
